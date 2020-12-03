@@ -17,5 +17,6 @@
 <!-- 			<many-to-many entity-name="com.revature.models.Trainer" column="trainer_id"> -->
 <!-- 			</many-to-many> -->
 <!-- 		</set> -->
+
 	</class>
 </hibernate-mapping>

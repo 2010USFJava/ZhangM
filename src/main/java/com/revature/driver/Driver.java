@@ -1,5 +1,8 @@
 package com.revature.driver;
 
+import java.util.HashSet;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -34,12 +37,19 @@ public class Driver {
 		s.save(student2);
 		s.save(student3);
 		
-		System.out.println(studentDao.findAll());
+		
+		List<Student> studentList = studentDao.findAll();
+		System.out.println(studentList);
 		
 		Teacher teacher = new Teacher(0, "OGMatt", "java", null);
+//		teacher.setStudents(new HashSet<>(studentList));
+		for (Student stu : studentList) {
+			stu.setTeacher(teacher);
+		}
+		
 		s.save(teacher);
 		tx.commit();
-		System.out.println(studentDao.findByTeacher(teacher));
+		System.out.println("Find by teacher: " + studentDao.findByTeacher(teacher));
 		
 	}
 

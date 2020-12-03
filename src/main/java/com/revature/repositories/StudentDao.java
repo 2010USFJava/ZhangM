@@ -12,6 +12,8 @@ public interface StudentDao {
 	public Student findByName(String name);
 	public List<Student> findAll();
 	public List<Student> findByTeacher(Teacher t);
+	public List<Student> findAllByAge(int age);
+	
 	public void insert(Student s);
 	public void update(Student s);
 	public void delete(Student s);

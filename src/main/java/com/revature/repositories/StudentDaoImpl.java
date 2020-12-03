@@ -3,6 +3,7 @@ package com.revature.repositories;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -42,9 +43,6 @@ public class StudentDaoImpl implements StudentDao {
 	@Override
 	public List<Student> findByTeacher(Teacher t) {
 		Session s = HibernateUtil.getSession();
-//		Query query = s.createQuery("From Student s WHERE s.teacher = :teacher", Student.class);
-//		query.setParameter("teacher", t);
-//		return (List<Student>) query.getResultList();
 		
 		CriteriaBuilder builder = s.getCriteriaBuilder();
 		CriteriaQuery<Student> query = builder.createQuery(Student.class);
@@ -54,23 +52,43 @@ public class StudentDaoImpl implements StudentDao {
 		query.select(root).where(builder.equal(join.get("id"), t.getId()));
 		return s.createQuery(query).getResultList();
 	}
+	
 
+	 
 	@Override
 	public void insert(Student s) {
-		// TODO Auto-generated method stub
-
+		Session sess = HibernateUtil.getSession();
+		sess.save(s);
 	}
 
 	@Override
 	public void update(Student s) {
-		// TODO Auto-generated method stub
-
+		Session sess = HibernateUtil.getSession();
+		sess.merge(s);
 	}
 
 	@Override
 	public void delete(Student s) {
-		// TODO Auto-generated method stub
+		Session sess = HibernateUtil.getSession();
+		sess.delete(s);
+	}
 
+//	@Override
+//	public List<Student> findAllByAge(int age) {
+//		 /* Criteria API (Criteria Query API)
+//		 * 		More complex than just the Query Interface
+//		 * 		Type-safe and supports more nuanced queries
+//		 */
+//		Session s = HibernateUtil.getSession();
+//		CriteriaBuilder builder = s.getCriteriaBuilder();
+//		CriteriaQuery<Student> query = builder.createQuery(Student.class);
+//		Root<Student> root = query.from(Student.class);
+		//CriteriaQuery<Student> = query.select(root).where(builder.between(root.get("age"), 87, 87));
+		
+		//		query.select(root)
+//				.where(builder.between(root.get("age"), 87, 87));
+//		return query.get
+		
 	}
 
 }

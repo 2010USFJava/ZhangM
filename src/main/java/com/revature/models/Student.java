@@ -1,6 +1,8 @@
 package com.revature.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,7 @@ public class Student {
 	private String name;
 	private int age;
 	
+	//@JsonBackReference
 	private Teacher teacher;
 	
 }
