@@ -1,0 +1,28 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration3.0.dtd">
+	
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.username">mzhang32</property>
+		<property name="hibernate.connection.password">revaturetraining</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://revaturetraining.cwtueznfnfw4.us-east-2.rds.amazonaws.com:5432/postgres</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
+		<property name="hibernate.connection.pool_size">10</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<!--  The below property has several different values to configure if/how hibernate will perform DDL operations 
+			CREATE: Drops all existing tables and re-creates them
+			VALIDATE: Will check that the schema is as expected, otherwise will not run
+			UPDATE: Hibernate will not delete anything, but will execute ddl to add to your schema
+			NONE: Hibernate will not perform any DDL/checks of any kind
+			CREATE-DROP: Hibernate will create tables when run and drop them when the session is closed
+			-->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<mapping resource="Student.hbm.xml"/>
+		<!-- The class maps entities via annotations -->
+		<mapping class="com.revature.models.Teacher"/>
+	</session-factory>
+</hibernate-configuration>

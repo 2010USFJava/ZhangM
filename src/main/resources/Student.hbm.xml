@@ -1,0 +1,21 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.revature.models">
+	<class name="Student" table="student">
+		<id name="id" type="int" column="student_id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="string" length="30" not-null="true"></property>
+		<property name="age" type="int"></property>
+		
+		
+	 	<many-to-one name="teacher" fetch="join"></many-to-one> 
+<!-- 		<set name="trainers" table="my_join_table"> -->
+<!-- 			<key column = "pokemon_id"/> -->
+<!-- 			<many-to-many entity-name="com.revature.models.Trainer" column="trainer_id"> -->
+<!-- 			</many-to-many> -->
+<!-- 		</set> -->
+	</class>
+</hibernate-mapping>
